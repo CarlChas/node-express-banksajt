@@ -1,18 +1,27 @@
 // const express = require("express") // Common.js module
 import express from "express" //ES6 modules
+import bodyParser from "body-parser"
+import cors from "cors"
 
 const app = express()
 const PORT = process.env.PORT || 3000
 
+// Middleware
+app.use(bodyParser.json())
+app.use(cors)
+
 // Routes - Endpoints - Behöver url + http-metod för att triggas
 //Method GET
-app.get("/", (req, res) => {
+app.get("/whatever", (req, res) => {
     //Det som triggas kallas för "routehandler"
     res.send("Hello from route '/'")
 })
 
 //Method POST
 app.post("/whatever", (req, res) => {
+
+    const { a, b } = req.body
+
     res.send("A POST-request")
 })
 
