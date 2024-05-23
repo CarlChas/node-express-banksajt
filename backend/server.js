@@ -21,6 +21,7 @@ app.get("/whatever", (req, res) => {
 app.post("/whatever", (req, res) => {
 
     const { a, b } = req.body
+    res.json({ "first": a, "second": b })
 
     res.send("A POST-request")
 })
