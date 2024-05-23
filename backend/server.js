@@ -1,23 +1,15 @@
-const { json } = require("body-parser")
-const { create } = require("domain")
-const { response } = require("express")
-const http = require("http")
+// const express = require("express") // Common.js module
+import express from "express" //ES6 modules
 
+const app = express()
 const PORT = process.env.PORT || 3000
 
-const server = http.createServer((request, response) => {
-    if (request.method === "GET" && request.url == "/") {
-        response.writeHead(200, { "Content-Type": "application/json" })
-        response.write(JSON.stringify({ message: "Hello from server!" }))
-        response.end()
-        return
-    }
-    else {
-        response.writeHead(404, { "Content-Type": "application/json" })
-        response.end(JSON.stringify({ message: "Route not found" }))
-    }
+// Routes - Endpoints - Behöver url + http-metod för att triggas
+app.get("/", (req, res) => {
+    //Det som triggas kallas för "routehandler"
+    res.send("Hello from route '/'")
 })
 
-server.listen(PORT, () => {
-    console.log(`Server on http://localhost:${PORT}`)
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`)
 })
